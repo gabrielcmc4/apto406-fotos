@@ -1,0 +1,7 @@
+<!doctype html><meta charset="utf-8"><title>apto406 fotos</title>
+<p id="s">carregando fotos...</p>
+<script>
+(async()=>{const files=[];for(let i=1;i<=17;i++){const n=String(i).padStart(2,'0');const r=await fetch('fotos/'+n+'.jpg');files.push({name:'apto406_'+n+'.jpg',buf:await r.arrayBuffer()});}
+const send=()=>{if(window.opener){window.opener.postMessage({kind:'apto406',files},'*');document.getElementById('s').textContent='enviadas '+files.length+' fotos';}else document.getElementById('s').textContent='sem opener';};
+send();window.addEventListener('message',e=>{if(e.data==='apto406-again')send();});})();
+</script>
